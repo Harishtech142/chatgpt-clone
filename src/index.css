@@ -1,0 +1,216 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 5% 15%;
+    --surface: 0 0% 97.6%;
+    --primary: 240 5% 15%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 240 5% 15%;
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 46%;
+    --accent: 240 5% 94%;
+    --accent-foreground: 240 5% 15%;
+    --destructive: 4 71% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 5% 88%;
+    --input: 240 5% 88%;
+    --ring: 240 5% 15%;
+    --radius: 0.75rem;
+
+    --sidebar: 240 5% 97%;
+    --sidebar-foreground: 240 5% 25%;
+    --sidebar-border: 240 5% 88%;
+    --sidebar-accent: 240 5% 92%;
+  }
+
+  .dark {
+    --background: 240 6% 10%;
+    --foreground: 0 0% 92%;
+    --surface: 240 5% 13%;
+    --primary: 0 0% 92%;
+    --primary-foreground: 240 6% 10%;
+    --secondary: 240 5% 16%;
+    --secondary-foreground: 0 0% 92%;
+    --muted: 240 5% 16%;
+    --muted-foreground: 240 4% 64%;
+    --accent: 240 5% 19%;
+    --accent-foreground: 0 0% 92%;
+    --destructive: 4 65% 55%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 4% 22%;
+    --input: 240 4% 22%;
+    --ring: 240 5% 70%;
+
+    --sidebar: 240 6% 7%;
+    --sidebar-foreground: 240 4% 82%;
+    --sidebar-border: 240 5% 16%;
+    --sidebar-accent: 240 5% 16%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--border));
+    border-radius: 9999px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+/* Markdown content inside chat bubbles */
+.prose-chat {
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+.prose-chat p {
+  margin: 0 0 0.85em 0;
+}
+.prose-chat p:last-child {
+  margin-bottom: 0;
+}
+.prose-chat ul,
+.prose-chat ol {
+  margin: 0.4em 0 0.85em 0;
+  padding-left: 1.5em;
+}
+.prose-chat li {
+  margin: 0.25em 0;
+}
+.prose-chat h1,
+.prose-chat h2,
+.prose-chat h3,
+.prose-chat h4 {
+  font-weight: 600;
+  margin: 1.2em 0 0.5em 0;
+  line-height: 1.3;
+}
+.prose-chat h1 {
+  font-size: 1.4em;
+}
+.prose-chat h2 {
+  font-size: 1.25em;
+}
+.prose-chat h3 {
+  font-size: 1.1em;
+}
+.prose-chat > *:first-child {
+  margin-top: 0;
+}
+.prose-chat a {
+  color: hsl(217 91% 60%);
+  text-decoration: underline;
+  text-decoration-color: hsl(217 91% 60% / 0.4);
+}
+.prose-chat blockquote {
+  border-left: 3px solid hsl(var(--border));
+  padding-left: 1em;
+  margin: 0.85em 0;
+  color: hsl(var(--muted-foreground));
+}
+.prose-chat code:not(pre code) {
+  background: hsl(var(--accent));
+  padding: 0.15em 0.4em;
+  border-radius: 0.3em;
+  font-family: theme('fontFamily.mono');
+  font-size: 0.85em;
+}
+.prose-chat pre {
+  background: hsl(var(--accent));
+  border-radius: 0.6em;
+  overflow-x: auto;
+  margin: 0.85em 0;
+}
+.prose-chat pre code {
+  font-family: theme('fontFamily.mono');
+  font-size: 0.85em;
+  background: transparent;
+  padding: 0;
+}
+.prose-chat .hljs {
+  color: hsl(var(--foreground));
+  background: transparent;
+}
+.prose-chat .hljs-keyword,
+.prose-chat .hljs-selector-tag,
+.prose-chat .hljs-literal,
+.prose-chat .hljs-section,
+.prose-chat .hljs-link {
+  color: hsl(217 91% 60%);
+}
+.prose-chat .hljs-string,
+.prose-chat .hljs-title,
+.prose-chat .hljs-name,
+.prose-chat .hljs-type,
+.prose-chat .hljs-attribute,
+.prose-chat .hljs-symbol,
+.prose-chat .hljs-bullet,
+.prose-chat .hljs-addition,
+.prose-chat .hljs-variable,
+.prose-chat .hljs-template-tag,
+.prose-chat .hljs-template-variable {
+  color: hsl(150 60% 40%);
+}
+.prose-chat .hljs-comment,
+.prose-chat .hljs-quote,
+.prose-chat .hljs-deletion,
+.prose-chat .hljs-meta {
+  color: hsl(var(--muted-foreground));
+}
+.prose-chat .hljs-number,
+.prose-chat .hljs-built_in,
+.prose-chat .hljs-builtin-name {
+  color: hsl(30 80% 50%);
+}
+.prose-chat table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.85em 0;
+  font-size: 0.9em;
+}
+.prose-chat th,
+.prose-chat td {
+  border: 1px solid hsl(var(--border));
+  padding: 0.5em 0.75em;
+  text-align: left;
+}
+.prose-chat th {
+  background: hsl(var(--accent));
+  font-weight: 600;
+}
+.prose-chat hr {
+  border: none;
+  border-top: 1px solid hsl(var(--border));
+  margin: 1.2em 0;
+}
+.prose-chat strong {
+  font-weight: 600;
+}
