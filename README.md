@@ -36,6 +36,36 @@ npm run build
 npm run preview
 ```
 
+## Deploying to Render
+
+This project is fully optimized and production-ready for deployment on **Render**.
+
+### Option 1: Static Site (Recommended & Free)
+
+Deploying as a Static Site is the best option because Render hosts it for free on a global CDN:
+
+1. In the **Render Dashboard**, click **New +** and select **Static Site** (or use the **Blueprint** option with the provided `render.yaml` file).
+2. Connect your Git repository.
+3. Configure the following settings if setting up manually:
+   - **Build Command:** `npm run build`
+   - **Publish Directory:** `dist`
+4. In the Render environment settings, add your environment variables:
+   - `VITE_WEBHOOK_URL`: Your production webhook URL.
+
+### Option 2: Web Service
+
+If you need to deploy the application as a Node.js Web Service:
+
+1. Click **New +** and select **Web Service**.
+2. Connect your Git repository.
+3. Configure the following settings:
+   - **Runtime:** `Node`
+   - **Build Command:** `npm run build`
+   - **Start Command:** `npm start` (this runs the production-ready `server.js` using Node's native HTTP module)
+4. Add your environment variables:
+   - `VITE_WEBHOOK_URL`: Your production webhook URL.
+   - `PORT`: The port to listen on (defaults to `5173`).
+
 ## How it talks to your webhook
 
 The webhook URL is now set in the project root `.env` file using:
